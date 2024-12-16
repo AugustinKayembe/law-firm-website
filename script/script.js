@@ -1,16 +1,33 @@
-// Sélectionner les éléments du carrousel
+// Menu Burger Toggle
+document.getElementById('burgerMenu').addEventListener('click', function () {
+    document.querySelector('.nav-links').classList.toggle('active');
+});
+
+// Testimonials Carousel
 const testimonials = document.querySelectorAll('.testimonial');
 let currentTestimonial = 0;
 
-// Fonction pour afficher un témoignage spécifique
 function showTestimonial(index) {
     testimonials.forEach((testimonial, i) => {
-        testimonial.classList.remove('active'); // Masquer tous les témoignages
+        testimonial.classList.remove('active');
         if (i === index) {
-            testimonial.classList.add('active'); // Afficher le témoignage actif
+            testimonial.classList.add('active');
         }
     });
 }
+
+document.querySelector('.left').addEventListener('click', () => {
+    currentTestimonial = (currentTestimonial === 0) ? testimonials.length - 1 : currentTestimonial - 1;
+    showTestimonial(currentTestimonial);
+});
+
+document.querySelector('.right').addEventListener('click', () => {
+    currentTestimonial = (currentTestimonial === testimonials.length - 1) ? 0 : currentTestimonial + 1;
+    showTestimonial(currentTestimonial);
+});
+
+// Initial display of first testimonial
+showTestimonial(currentTestimonial);
 
 // Afficher le premier témoignage au début
 showTestimonial(currentTestimonial);
